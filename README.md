@@ -26,7 +26,7 @@ Los datos se eztraen de la siguiente fuente:\
 │── 📄 requirements.txt           # Dependencias del proyecto
 │── 📄 README.md                  # Documentación del proyecto
 │── 📂 data
-│   ├── 🌍 world_economies.json    # Archivo JSON con los datos del PIB
+│   ├── 🌍 world_economies.csv    # Archivo JSON con los datos del PIB
 │   ├── 🗄️ World_Economies.db      # Base de datos SQLite
 │── 📂 logs
 │   ├── 📝 etl_project_log.txt     # Archivo de registro de operaciones
