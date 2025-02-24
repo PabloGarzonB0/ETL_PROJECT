@@ -45,8 +45,11 @@ Para ejecutar el pipeline de ETL, simplemente se corre el siguiente comando de l
 ```
 Dentro del proceso de ejecución del script se observara la consulta de los paices que cuentan con un PIB mayor a los 100 billones de USD
 
+![Imagen de consulta](Imagenes/Captura1.png)
 
 Adicionalmente, si se dirige a la carpeta de logs, se encuentran guardados los registros del tiempo ocupado para realizarse cada una de las funciones mencionadas previamente
+
+![Imagen log_file](Imagenes/Captura2.png)
 
 ## **Autor**
 
