@@ -1,0 +1,30 @@
+[2025-Feb-24-11:55:53] ETL JOB STARTED 
+[2025-Feb-24-11:55:53] 1. Web_Page Data Extraction  
+[2025-Feb-24-11:56:51] Data extraction complete. Initiating Transformation process 
+[2025-Feb-24-11:56:51] 2. Transform Job Started 
+[2025-Feb-24-11:56:51] Data transformation complete. initiating loading process 
+[2025-Feb-24-11:56:51] 3. Load  Job Started 
+[2025-Feb-24-11:56:51] Data Saved 
+[2025-Feb-24-11:56:51] 4. Quering the database  
+[2025-Feb-24-11:56:51] Process Complete 
+[2025-Feb-24-11:56:51] Finish ETL Process... 
+[2025-Feb-24-12:01:38] ETL JOB STARTED 
+[2025-Feb-24-12:01:38] 1. Web_Page Data Extraction  
+[2025-Feb-24-12:01:48] Data extraction complete. Initiating Transformation process 
+[2025-Feb-24-12:01:48] 2. Transform Job Started 
+[2025-Feb-24-12:01:48] Data transformation complete. initiating loading process 
+[2025-Feb-24-12:01:48] 3. Load  Job Started 
+[2025-Feb-24-12:01:48] Data Saved 
+[2025-Feb-24-12:01:48] 4. Quering the database  
+[2025-Feb-24-12:01:48] Process Complete 
+[2025-Feb-24-12:01:48] Finish ETL Process... 
+[2025-Feb-24-12:04:42] ETL JOB STARTED 
+[2025-Feb-24-12:04:42] 1. Web_Page Data Extraction  
+[2025-Feb-24-12:04:43] Data extraction complete. Initiating Transformation process 
+[2025-Feb-24-12:04:43] 2. Transform Job Started 
+[2025-Feb-24-12:04:43] Data transformation complete. initiating loading process 
+[2025-Feb-24-12:04:43] 3. Load  Job Started 
+[2025-Feb-24-12:04:43] Data Saved 
+[2025-Feb-24-12:04:43] 4. Quering the database  
+[2025-Feb-24-12:04:43] Process Complete 
+[2025-Feb-24-12:04:43] Finish ETL Process... 
