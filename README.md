@@ -43,7 +43,7 @@ Para ejecutar el pipeline de ETL, simplemente se corre el siguiente comando de l
 ``` bash
  python etl_script.py
 ```
-Dentro del proceso de ejecución del script se observara la consulta de los paices que cuentan con un PIB mayor a los 100 billones de USD
+Dentro del proceso de ejecución del script se observara la consulta de los paises que cuentan con un PIB mayor a los 100 billones de USD
 
 ![Imagen de consulta](Imagenes/Captura1.png)
 
