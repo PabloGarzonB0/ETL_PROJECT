@@ -1,0 +1,24 @@
+[2025-02-25T23:26:53] Preliminaries complete. Initiating ETL process 
+[2025-02-25T23:26:56] Data extraction complete. Initiating transformation process 
+[2025-02-25T23:26:56] Data tranformation complete. Initiation Loging process 
+[2025-02-25T23:26:56] Data saved to CSV file 
+[2025-02-25T23:26:56] SQL connection initiated 
+[2025-02-25T23:26:56] Data loaded to Database as a table, Executing queries 
+[2025-02-25T23:26:56] Process complete 
+[2025-02-25T23:26:56] Server Connection closed 
+[2025-02-25T23:35:38] Preliminaries complete. Initiating ETL process 
+[2025-02-25T23:35:39] Data extraction complete. Initiating transformation process 
+[2025-02-25T23:35:39] Data tranformation complete. Initiation Loging process 
+[2025-02-25T23:35:39] Data saved to CSV file 
+[2025-02-25T23:35:39] SQL connection initiated 
+[2025-02-25T23:35:39] Data loaded to Database as a table, Executing queries 
+[2025-02-25T23:35:39] Process complete 
+[2025-02-25T23:35:39] Server Connection closed 
+[2025-02-25T23:43:45] Preliminaries complete. Initiating ETL process 
+[2025-02-25T23:43:47] Data extraction complete. Initiating transformation process 
+[2025-02-25T23:43:47] Data tranformation complete. Initiation Loging process 
+[2025-02-25T23:43:47] Data saved to CSV file 
+[2025-02-25T23:43:47] SQL connection initiated 
+[2025-02-25T23:43:47] Data loaded to Database as a table, Executing queries 
+[2025-02-25T23:43:47] Process complete 
+[2025-02-25T23:43:47] Server Connection closed 
