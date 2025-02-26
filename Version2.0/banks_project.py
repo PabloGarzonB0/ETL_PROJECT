@@ -24,7 +24,7 @@ def extract(url, table_attribs):
                 bank_name = col[1].find_all('a')[1]['title']
                 market_cap = col[2].text.strip()
                 # Eliminar caracteres no numéricos y convertir a float
-                market_cap = market_cap.replace(",", "").replace(".", "").replace("\n","")
+                market_cap = market_cap.replace("\n","")
                 # Ingresar valores extraidos de web a nuevo dataframe
                 try:
                     market_cap = float(market_cap)
@@ -37,17 +37,34 @@ def extract(url, table_attribs):
                     print(f"Error al convertir {market_cap} a float")
     return df
 
-def transfrorm(df, csv_path):
+def transform(df, csv_path):
+    '''Funcion para acceder a archivo de conversion de moneta y adicionar
+    3 columnas al dataset con la moneda actual para cada caso'''
+    df_ex = pd.read_csv(csv_path)
+    conversion_dict = df_ex.set_index('Currency').to_dict()['Rate']
     
+    # Creacion de nuevas columnas MC_GBP_Billion, MC_EUR_Billion, MC_INR_Billion
+    df['MC_GBP_Billion'] = [np.round(x*conversion_dict['GBP'], 2) for x in df['MC_USD_Billion']]
+    df['MC_EUR_Billion'] = [np.round(x*conversion_dict['EUR'], 2) for x in df['MC_USD_Billion']]
+    df['MC_INR_Billion'] = [np.round(x*conversion_dict['INR'], 2) for x in df['MC_USD_Billion']]
+    print(df)
+    return df
 
 def load_to_csv(df, output_path):
+    ''' Funcion para salvar el resultado final como un archivo CSV en una ruta sugerida
+    no se retorna nada'''
+    df.to_csv(output_path)
     pass
 
-def load_lo_db(df, sql_connection, table_name):
-    pass
+def load_to_db(df, sql_connection, table_name):
+    '''Esta funciona guarda el dataframe final como un archivo de tipo base de datos con un nombre y una tabla'''
+    df.to_sql(table_name, sql_connection, if_exists='replace', index=False)
 
 def run_query(query_statement, sql_connection):
-    pass
+    '''Funcion que corre una consulta que se asigna y se imprime desde la terminal'''
+    print(f"Consulta realizada: \n{query_statement}")
+    query_output = pd.read_sql(query_statement, sql_connection)
+    print(query_output)
 
 
 def log_progress(message):
@@ -65,22 +82,34 @@ if __name__ == '__main__':
     URL = "https://web.archive.org/web/20230908091635/https://en.wikipedia.org/wiki/List_of_largest_banks"
     table_attributes = ["bank_name","MC_USD_Billion"]
     csv_path = "./Largest_banks_data.csv"
+    csv_exchange_rate = "./exchange_rate.csv"
     db_name = "Banks.db"
     table_name = "Largest_banks"
-
-    df = extract(URL, table_attributes)
     
-    df.to_csv("archivo.csv")
-    '''
-    Log message used later
+    # Step 1.
     log_progress("Preliminaries complete. Initiating ETL process")
-    log_progress("Data extraction complete. Initiating transformation process"
+    df = extract(URL, table_attributes)
+    log_progress("Data extraction complete. Initiating transformation process")
+    # Step 2.
     log_progress("Data tranformation complete. Initiation Loging process")
+    df_transform = transform(df, csv_exchange_rate)
+    #Step 3.
     log_progress("Data saved to CSV file")
+    load_to_csv(df,csv_path)
+    #Step 4.
     log_progress("SQL connection initiated")
+    sql_connection = sqlite3.connect(db_name)
+    load_to_db(df_transform,sql_connection, table_name)
+    #Step 5.
     log_progress("Data loaded to Database as a table, Executing queries")
+    query_statement1 = f"SELECT * FROM {table_name}"
+    query_statement2 = f"SELECT AVG(MC_GBP_Billion) FROM {table_name}"
+    query_statement3 = f"SELECT bank_name FROM {table_name} LIMIT 5 "
+    run_query(query_statement1,sql_connection)
+    run_query(query_statement2,sql_connection)
+    run_query(query_statement3,sql_connection)
     log_progress("Process complete")
+
+    #Step 6.
+    sql_connection.close()
     log_progress("Server Connection closed")
-    
-    
-    '''
