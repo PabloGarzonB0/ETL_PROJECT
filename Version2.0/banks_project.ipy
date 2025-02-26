@@ -13,33 +13,41 @@ def extract(url, table_attribs):
     # Creacion de dataframe donde se almacenan los valores
     df = pd.DataFrame(columns=table_attribs)
     table = soup_object.find_all('table')
-    tbody_table = table[2].tbody
+    table_2 = table[0]
+    tbody_table = table_2.tbody
     rows_table = tbody_table.find_all('tr')
     
     for row in rows_table:
         col = row.find_all("td")
         if len(col) != 0:
-            if col[0].find('a') is not None and ' ' not in col[2]:
-                bank_name = col[0].a.text
+            if col[1].find('a') is not None and ' ' not in col[2]:
+                bank_name = col[1].find_all('a')[1]['title']
                 market_cap = col[2].text.strip()
                 # Eliminar caracteres no numéricos y convertir a float
                 market_cap = market_cap.replace(",", "").replace(".", "").replace("\n","")
-
-                if market_cap:
-                        try:
-                            market_cap = float(market_cap)
-                            # Almacenando informacion en diccionario
-                            data_dict = {'bank_name':  bank_name,
-                                        'MC_USD_Billion': market_cap}
-                            new_dataframe = pd.DataFrame(data_dict, index=[0])
-                            df = pd.concat([df, new_dataframe], ignore_index=True)
-                        except ValueError:
-                            print(f"Error al convertir {market_cap} a float")
-    # Castear datos str a float
-    #df['MC_USD_Billion'] = df['MC_USD_Billion'].astype(float)
+                # Ingresar valores extraidos de web a nuevo dataframe
+                try:
+                    market_cap = float(market_cap)
+                    # Almacenando informacion en diccionario
+                    data_dict = {'bank_name':  bank_name,
+                                'MC_USD_Billion': market_cap}
+                    new_dataframe = pd.DataFrame(data_dict, index=[0])
+                    df = pd.concat([df, new_dataframe], ignore_index=True)
+                except ValueError:
+                    print(f"Error al convertir {market_cap} a float")
     return df
 
-   
+def transfrorm(df, csv_path):
+    
+
+def load_to_csv(df, output_path):
+    pass
+
+def load_lo_db(df, sql_connection, table_name):
+    pass
+
+def run_query(query_statement, sql_connection):
+    pass
 
 
 def log_progress(message):
@@ -54,14 +62,14 @@ def log_progress(message):
 if __name__ == '__main__':
     
     # variables initialized   
-    URL = "https://en.wikipedia.org/wiki/List_of_largest_banks"
+    URL = "https://web.archive.org/web/20230908091635/https://en.wikipedia.org/wiki/List_of_largest_banks"
     table_attributes = ["bank_name","MC_USD_Billion"]
     csv_path = "./Largest_banks_data.csv"
     db_name = "Banks.db"
     table_name = "Largest_banks"
 
     df = extract(URL, table_attributes)
-    print(df)
+    
     df.to_csv("archivo.csv")
     '''
     Log message used later
